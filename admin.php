@@ -8,12 +8,12 @@ $subjects=$subjectres->fetchAll();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Пробное тестирование</title>
+	<title>Админ-панель</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 <body>
-<header></header>
+<?php require_once('layout.php'); ?>
 <main>
 	<div class="panel">
 		<a href="#" id="results_btn" class="active">Результаты</a>
@@ -35,6 +35,7 @@ $subjects=$subjectres->fetchAll();
 						<option value="<?=$sch['school_id']?>"><?=$sch['school_name']?></option>
 					<?php } ?>
 				</select>
+				<a href="a_folder/download.php" class="download"><img src="img/download.svg" alt="download"></a>
 			</div>
 			<table border="1">
 				<thead>
@@ -52,12 +53,13 @@ $subjects=$subjectres->fetchAll();
 		</div>
 		<div class="subjects">
 			<p class="h">Предметы</p>
+			<a class="add_subject" href="#">+ Добавить новый</a>
 			<?php foreach($subjects as $subject) { ?>
 				<div class="item">
-					<input type="checkbox" id="<?=$subject['subject_id']?>">
+					<input type="checkbox" id="sbj-<?=$subject['subject_id']?>">
 					<div class="head">
 						<p class="name"><?=$subject['subject_name']?></p>
-						<label for="<?=$subject['subject_id']?>">></label>
+						<label for="sbj-<?=$subject['subject_id']?>">></label>
 					</div>
 					<form action="a_folder/update_sbj.php" method="POST" enctype="multipart/form-data">
 						<input type="hidden" name="id" value="<?=$subject['subject_id']?>">
@@ -99,7 +101,8 @@ $subjects=$subjectres->fetchAll();
 							<input type="file" name="image[]" accept="image/*" multiple>
 						</div>
 						<div>
-							<input type="submit" class="ready" value="Сохранить">
+							<input type="submit" class="btn add" value="Сохранить">
+							<button type="button" class="btn delete" data-id="<?=$subject['subject_id']?>">Удалить</button>
 						</div>
 					</form>
 				</div>
@@ -107,76 +110,31 @@ $subjects=$subjectres->fetchAll();
 		</div>
 		<div class="schools">
 			<p class="h">Школы</p>
+			<a class="add_school" href="#">+ Добавить новую</a>
+			<?php foreach ($schools as $school) { ?>
+				<div class="item">
+					<input type="checkbox" id="sch-<?=$school['school_id']?>">
+					<div class="head">
+						<p class="name"><?=$school['school_name']?></p>
+						<label for="sch-<?=$school['school_id']?>">></label>
+					</div>
+					<form action="a_folder/update_sch.php" method="POST">
+						<input type="hidden" name="id" value="<?=$school['school_id']?>">
+						<div>
+							<label>Название</label>
+							<input type="text" name="name" value="<?=$school['school_name']?>">
+						</div>
+						<div>
+							<input type="submit" class="btn add" value="Сохранить">
+							<button type="button" class="btn delete" data-id="<?=$school['school_id']?>">Удалить</button>
+						</div>
+					</form>
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 </main>
 <script src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-	function Load(url, data, target) {
-		$.ajax({
-			url: url,
-			method: 'POST',
-			data: data,
-			dataType: 'html',
-			success: function(response) {
-				console.log(response);
-				target.html(response);
-			}
-		});
-	}
-	Load('a_folder/getresults.php', 'school='+$('#school_select').val()+'&subject='+$('#subject_select').val(), $('.results tbody'));
-	$('#results_btn').click(function() {
-		$('.panel a').removeClass('active');
-		$(this).addClass('active');
-		$('.content>div').css('transform', 'translateX(0)');
-	});
-	$('#schools_btn').click(function() {
-		$('.panel a').removeClass('active');
-		$(this).addClass('active');
-		//Load('schools/getschools.php', '', $('.schools .data'));
-		$('.content>div').css('transform', 'translateX(-200%)');
-	});
-	$('#subjects_btn').click(function() {
-		$('.panel a').removeClass('active');
-		$(this).addClass('active');
-		//Load('subjects/getsubjects.php', '', $('.subjects .data'));
-		$('.content>div').css('transform', 'translateX(-100%)');
-	});
-	$('.filter select').change(function(){
-		Load('a_folder/getresults.php', 'school='+$('#school_select').val()+'&subject='+$('#subject_select').val(), $('.results tbody'));
-	});
-
-	$('input[type=range]').change(function(){
-		$(this).parent().find('span').html($(this).val());
-	});
-
-	$('input[name=count]').change(function(){
-		var max=$(this).val();
-		$(this).parent().parent().find('input[type=range]').each(function(){
-			$(this).attr('max', max);
-		});
-	});
-
-	$('.minus').click(function(){
-		var input=$(this).parent().find('input');
-		var val=parseInt(input.val(),10);
-		val--;
-		if(parseInt(input.attr('min'),10)<=val) {
-			input.val(val);
-			$(this).parent().find('span').html(val);
-		}
-	});
-
-	$('.plus').click(function(){
-		var input=$(this).parent().find('input');
-		var val=parseInt(input.val(),10);
-		val++;
-		if(parseInt(input.attr('max'),10)>=val) {
-			input.val(val);
-			$(this).parent().find('span').html(val);
-		}
-	});
-
-</script>
+<script src="js/admin.js"></script>
 </body>
 </html>
