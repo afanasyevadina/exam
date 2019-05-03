@@ -46,6 +46,7 @@ $subjects=$subjectres->fetchAll();
 					<?php } ?>
 				</select>
 				<a href="a_folder/download.php" class="download"><img src="img/download.svg" alt="download"></a>
+				<a class="clear"><img src="img/delete.svg" alt="delete"></a>
 			</div>
 			<table border="1">
 				<thead>
@@ -101,6 +102,12 @@ $subjects=$subjectres->fetchAll();
 							<input type="range" name="three" min="0" max="<?=$subject['count']?>" value="<?=$subject['three']?>">
 							<button class="plus" type="button">+</button>
 							<span><?=$subject['three']?></span>
+						</div>
+						<div>
+							<label>
+								<input type="radio" name="lang" value="kz" <?=$subject['lang']=='kz'?'checked':''?>>Казахский</label>
+							<label>
+								<input type="radio" name="lang" value="ru" <?=$subject['lang']=='ru'?'checked':''?>>Русский</label>
 						</div>
 						<div>
 							<label>Тесты</label>

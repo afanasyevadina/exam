@@ -9,6 +9,8 @@ if(!empty($_POST)) {
 		setcookie('hash', $user['hash']);
 		$_SESSION['hash']=$user['hash'];
 		header('Location: /admin');
+	} else {
+		$message="Неверные данные!";
 	}
 }
 ?>
@@ -25,6 +27,7 @@ if(!empty($_POST)) {
 	<form action="login.php" method="POST" >
 		<div class="personal">
 			<p class="h">Вход</p>
+			<p class="error"><?=$message?></p>
 			<div>
 				<input type="text" name="login" autocomplete="off" required>
 				<label>Логин</label>

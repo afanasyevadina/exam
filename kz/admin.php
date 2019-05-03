@@ -46,6 +46,7 @@ $subjects=$subjectres->fetchAll();
 					<?php } ?>
 				</select>
 				<a href="../a_folder/download.php" class="download"><img src="../img/download.svg" alt="download"></a>
+				<a class="clear"><img src="../img/delete.svg" alt="delete"></a>
 			</div>
 			<table border="1">
 				<thead>
@@ -128,7 +129,7 @@ $subjects=$subjectres->fetchAll();
 						<p class="name"><?=$school['school_name']?></p>
 						<label for="sch-<?=$school['school_id']?>">></label>
 					</div>
-					<form action="a_folder/update_sch.php" method="POST">
+					<form action="../a_folder/update_sch.php" method="POST">
 						<input type="hidden" name="id" value="<?=$school['school_id']?>">
 						<div>
 							<label>Аты</label>

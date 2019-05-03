@@ -20,11 +20,11 @@ $user=$ur->fetch();
 	<form action="../check.php" method="POST" >
 		<div class="personal">
 			<div>
-				<input type="text" name="name" autocomplete="off" required>
+				<input class="surname" type="text" name="name" autocomplete="off" required>
 				<label>Тегі</label>
 			</div>
 			<div>
-				<input type="text" name="surname" autocomplete="off" required>
+				<input class="name" type="text" name="surname" autocomplete="off" required>
 				<label>Аты</label>
 			</div>
 			<div>
@@ -49,6 +49,11 @@ $user=$ur->fetch();
 		<input type="submit" value="Тексеру" class="ready" id="finish">
 	</form>
 </main>
+<div class="timer">
+	<span class="min">60</span>
+	<span>:</span>
+	<span class="sec">00</span>
+</div>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/main.js"></script>
 </body>

@@ -7,7 +7,6 @@ $fn=$pdo->prepare("SELECT * FROM `subjects` WHERE `subject_id`=?");
 $fn->execute(array($_POST['subject']));
 
 $main=$fn->fetch();
-
 $all=file_get_contents(__DIR__."\\".$main['subject_path']);
 foreach(explode("\n", $all) as $str) {
 	$line++;

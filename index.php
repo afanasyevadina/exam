@@ -20,11 +20,11 @@ $user=$ur->fetch();
 	<form action="check.php" method="POST" >
 		<div class="personal">
 			<div>
-				<input type="text" name="name" autocomplete="off" required>
+				<input class="surname" type="text" name="name" autocomplete="off" required>
 				<label>Фамилия</label>
 			</div>
 			<div>
-				<input type="text" name="surname" autocomplete="off" required>
+				<input class="name" type="text" name="surname" autocomplete="off" required>
 				<label>Имя</label>
 			</div>
 			<div>
@@ -35,10 +35,14 @@ $user=$ur->fetch();
 				</select>
 				<label>Школа</label>
 			</div>
-			<?php while($subject=$subjects->fetch()) { ?>
-				<input type="radio" name="subject" value="<?=$subject['subject_id']?>" id="<?=$subject['subject_id']?>" class="subject">
-				<label for="<?=$subject['subject_id']?>" class="subject"><?=$subject['subject_name']?></label>
-			<? } ?>
+			<div>
+				<select class="language">
+					<option value="ru">Русский</option>
+					<option value="kz">Казахский</option>
+				</select>
+				<label>Язык обучения</label>
+			</div>
+			<div id="list"></div>
 			<button class="ready" id="start" disabled="disabled">Приступить</button>
 		</div>
 		<div id="message">
@@ -49,6 +53,11 @@ $user=$ur->fetch();
 		<input type="submit" value="Проверить" class="ready" id="finish">
 	</form>
 </main>
+<div class="timer">
+	<span class="min">60</span>
+	<span>:</span>
+	<span class="sec">00</span>
+</div>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/main.js"></script>
 </body>

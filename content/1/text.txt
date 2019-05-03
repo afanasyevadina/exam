@@ -1,1 +1,1 @@
-<img src="content/1/maxresdefault.jpg">
+<img src="/content/1/content/1/maxresdefault.jpg">

@@ -114,3 +114,15 @@
 			}
 		});
 	});
+
+	$('.clear').click(function(){
+		$.ajax({
+			url: '/clear.php',
+			data: '',
+			method: 'POST',
+			dataType: 'html',
+			success: function(response) {
+				Load('/a_folder/getresults.php', 'school='+$('#school_select').val()+'&subject='+$('#subject_select').val(), $('.results tbody'));
+			}
+		});
+	});
