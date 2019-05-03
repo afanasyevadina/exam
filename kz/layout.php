@@ -1,10 +1,10 @@
 <header>
 	<nav>
-		<a href="/">Тестирование</a>
+		<a href="/kz/">Тестілеу</a>
 		<?php if($user) { ?>
-		<a href="/admin">Админ-панель</a>
+		<a href="/kz/admin">Админ-панель</a>
 	<?php } ?>
-		<a href="/login"><?=$user?'Выход':'Войти'?></a>
+		<a href="/kz/login"><?=$user?'Шығу':'Кіру'?></a>
 	</nav>
 	<div class="lang">
 		<a href="/<?=basename($_SERVER['REQUEST_URL'])?>">RU</a>

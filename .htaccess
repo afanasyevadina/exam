@@ -3,3 +3,4 @@
 </IfModule>
 RewriteEngine on
 RewriteRule ^(\w+)$ $1.php
+RewriteRule ^kz/(\w+)$ kz/$1.php

@@ -4,7 +4,7 @@
 		$('.personal .ready').removeAttr('disabled');
 	});
 
-	$('.ready').click(function(e){
+	$('#start').click(function(e){
 		e.preventDefault();
 		var subject;
 		$('.subject').each(function(){
@@ -13,7 +13,7 @@
 			}
 		});
 		$.ajax({
-			url: 'test.php',
+			url: '/test.php',
 			method: 'POST',
 			data: 'subject='+subject,
 			dataType: 'html',
@@ -21,6 +21,7 @@
 				$('.personal').fadeOut();
 				$('.test').html(response);
 				setTimeout(function(){
+					$('#finish').css('display', 'block');
 					$('.test').fadeIn();
 				},400);
 			}
@@ -36,7 +37,9 @@
 			data: $(this).serialize(),
 			success: function(response) {
 				var result=$.parseJSON(response);
-				$('#message').html(result.text);
+				$('#message .balls').html(result.balls);
+				$('#message .rating').html(result.rating);
+				$('#message').css('display', 'block');
 				$('.test input').each(function(){
 					if($(this).val()==result.keys[$(this).attr('name')]) {
 						$(this).parent().css('background-color', '#B6FFB4');

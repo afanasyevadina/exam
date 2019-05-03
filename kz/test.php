@@ -53,3 +53,4 @@ foreach (array_slice($newArray, 0, $main['count'], true) as $key => $question) {
 		<input type="radio" name="<?=$key?>" value="<?=trim($question['answers'][4]['text'])?>"><?=$question['answers'][4]['text']?>
 	</label>
 <?php } ?>
+<input type="submit" value="Проверить" class="ready">

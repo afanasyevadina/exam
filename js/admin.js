@@ -6,13 +6,12 @@
 			data: data,
 			dataType: 'html',
 			success: function(response) {
-				console.log(response);
 				target.html(response);
 			}
 		});
 	}
-	Load('a_folder/getresults.php', 'school='+$('#school_select').val()+'&subject='+$('#subject_select').val(), $('.results tbody'));
-	$('.download').attr('href', 'a_folder/download.php?school='+$('#school_select').val()+'&subject='+$('#subject_select').val());
+	Load('/a_folder/getresults.php', 'school='+$('#school_select').val()+'&subject='+$('#subject_select').val(), $('.results tbody'));
+	$('.download').attr('href', '/a_folder/download.php?school='+$('#school_select').val()+'&subject='+$('#subject_select').val());
 
 	$('#results_btn').click(function() {
 		$('.panel a').removeClass('active');
@@ -22,18 +21,16 @@
 	$('#schools_btn').click(function() {
 		$('.panel a').removeClass('active');
 		$(this).addClass('active');
-		//Load('schools/getschools.php', '', $('.schools .data'));
 		$('.content>div').css('transform', 'translateX(-200%)');
 	});
 	$('#subjects_btn').click(function() {
 		$('.panel a').removeClass('active');
 		$(this).addClass('active');
-		//Load('subjects/getsubjects.php', '', $('.subjects .data'));
 		$('.content>div').css('transform', 'translateX(-100%)');
 	});
 	$('.filter select').change(function(){
-		Load('a_folder/getresults.php', 'school='+$('#school_select').val()+'&subject='+$('#subject_select').val(), $('.results tbody'));
-		$('.download').attr('href', 'a_folder/download.php?school='+$('#school_select').val()+'&subject='+$('#subject_select').val());
+		Load('/a_folder/getresults.php', 'school='+$('#school_select').val()+'&subject='+$('#subject_select').val(), $('.results tbody'));
+		$('.download').attr('href', '/a_folder/download.php?school='+$('#school_select').val()+'&subject='+$('#subject_select').val());
 	});
 
 	$('.subjects').on('change', 'input[type=range]', function(){
@@ -69,7 +66,7 @@
 
 	$('.add_subject').click(function(){
 		$.ajax({
-			url: 'a_folder/add_subject.php',
+			url: '/a_folder/add_subject.php',
 			data: '',
 			dataType: 'html',
 			method: 'POST',
@@ -83,7 +80,7 @@
 	$('.subjects').on('click', '.delete', function() {
 		var parent=$(this).parent().parent().parent();
 		$.ajax({
-			url: 'a_folder/del_subject.php',
+			url: '/a_folder/del_subject.php',
 			data: 'id='+$(this).data('id'),
 			dataType: 'html',
 			method: 'POST',
@@ -94,7 +91,7 @@
 	});
 	$('.add_school').click(function(){
 		$.ajax({
-			url: 'a_folder/add_school.php',
+			url: '/a_folder/add_school.php',
 			data: '',
 			dataType: 'html',
 			method: 'POST',
@@ -108,7 +105,7 @@
 	$('.schools').on('click', '.delete', function() {
 		var parent=$(this).parent().parent().parent();
 		$.ajax({
-			url: 'a_folder/del_school.php',
+			url: '/a_folder/del_school.php',
 			data: 'id='+$(this).data('id'),
 			dataType: 'html',
 			method: 'POST',

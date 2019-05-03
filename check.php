@@ -39,7 +39,8 @@ if($balls>=$main['five']) {
 $res=$pdo->prepare("INSERT INTO `results` (`name`, `surname`, `school_id`, `subject_id`, `result`, `date`) VALUES (?,?,?,?,?, NOW())");
 $res->execute(array($name, $sname, $sch, $sbj, $balls));
 echo json_encode(array(
-	'text'=>"<p>Ваш результат: ".$balls." баллов.</p><p>Оценка: ".$rating."</p>",
+	'balls'=>$balls,
+	'rating'=>$rating,
 	'keys'=>$test
 ));
 ?>

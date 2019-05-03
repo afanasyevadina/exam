@@ -8,7 +8,7 @@ if($_FILES['text']) {
 	move_uploaded_file($_FILES['text']['tmp_name'], '../'.$fn);
 
 	$text=file_get_contents('../'.$fn);
-	$text=preg_replace('|<img src="(.*)">|isU', '<img src="content/'.$_POST['id'].'/'."$1".'">', $text);
+	$text=preg_replace('|<img src="(.*)">|isU', '<img src="/content/'.$_POST['id'].'/'."$1".'">', $text);
 	file_put_contents('../'.$fn, $text);
 }
 if($_FILES['image']) {

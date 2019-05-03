@@ -13,7 +13,11 @@ header {
 	background-color: #090D6B;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	padding: 0 30px;
+}
+header > * {
+	display: flex;
 }
 header a {
 	display: block;
@@ -21,8 +25,19 @@ header a {
 	color: #fff;
 	font-family: Open Sans, sans-serif;
 	text-transform: uppercase;
-	font-size: 218x;
 	text-decoration: none;
+}
+nav a {
+	height: 80px;
+	line-height: 80px;
+}
+nav a:hover {
+	background: #2f349a;
+}
+.lang * {
+	display: block;
+	padding: 0 5px;
+	color: #fff;
 }
 .personal {
 	display: flex;
@@ -41,21 +56,25 @@ header a {
 	opacity: 1;
 	font-size: 19px;
 }
-.personal input[type=text], .personal select {
+.personal input[type=text], .personal input[type=password], .personal select {
 	width: calc(100% - 150px);
 	margin: 7px 0;
 	padding: 7px;
 	font-size: 16px;
 	font-family: Gothic, sans-serif;
 }
-.personal input[type=text] {
+.personal input[type=text], .personal input[type=password] {
 	border: none;
 	border-bottom: 1px solid #1C5FB4;
+}
+.personal .h {
+	text-align: center;
+	margin: 10px;
 }
 .personal select {
 	border-radius: 5px;
 }
-.personal input[type=text]:focus {
+.personal input[type=text]:focus, .personal input[type=password]:focus {
 	border-bottom: 2px solid #1C5FB4;
 	padding-bottom: 6px;
 }
@@ -90,6 +109,7 @@ header a {
 	color: #fff;
 	cursor: pointer;
 	background: linear-gradient(#00215F, #004CDA);
+	margin: 20px 0;
 }
 .btn {
 	border: none;
@@ -187,7 +207,7 @@ tbody tr:nth-child(odd) {
 	background: #fff;
 }
 tbody tr:nth-child(even) {
-	background: #ddd;
+	background: #eee;
 }
 .panel {
 	display: flex;
@@ -303,4 +323,7 @@ tbody tr:nth-child(even) {
 }
 .download img {
 	height: 20px;
+}
+#message, #finish {
+	display: none;
 }
